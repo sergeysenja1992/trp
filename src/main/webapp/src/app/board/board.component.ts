@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BoardComponent implements OnInit {
 
-  items = []
+  items = [];
 
   constructor() {
     for (let i = 0; i < 9999; i++) {

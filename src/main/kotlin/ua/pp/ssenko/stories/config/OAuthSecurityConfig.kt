@@ -1,5 +1,6 @@
 package ua.pp.ssenko.stories.config
 
+import log
 import org.springframework.beans.factory.annotation.Configurable
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso
 import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties
@@ -14,6 +15,7 @@ import org.springframework.security.oauth2.client.OAuth2ClientContext
 import org.springframework.security.oauth2.client.OAuth2RestTemplate
 import org.springframework.security.oauth2.client.filter.OAuth2ClientAuthenticationProcessingFilter
 import org.springframework.security.oauth2.client.token.grant.code.AuthorizationCodeResourceDetails
+import org.springframework.security.oauth2.provider.OAuth2Authentication
 import org.springframework.security.web.authentication.HttpStatusEntryPoint
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository
@@ -63,8 +65,14 @@ class OAuthSecurityConfig(
         val oAuth2Filter = OAuth2ClientAuthenticationProcessingFilter("/google/login")
         val oAuth2RestTemplate = OAuth2RestTemplate(authorizationCodeResourceDetails, oauth2ClientContext)
         oAuth2Filter.setRestTemplate(oAuth2RestTemplate)
-        oAuth2Filter.setTokenServices(UserInfoTokenServices(resourceServerProperties.userInfoUri,
-                resourceServerProperties.clientId))
+        oAuth2Filter.setTokenServices(object: UserInfoTokenServices(resourceServerProperties.userInfoUri,
+                resourceServerProperties.clientId) {
+            override fun loadAuthentication(accessToken: String?): OAuth2Authentication {
+                val authentication = super.loadAuthentication(accessToken)
+                log.info("Load user {}", authentication)
+                return authentication
+            }
+        })
         return oAuth2Filter
     }
 
