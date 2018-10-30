@@ -1,0 +1,160 @@
+import groovy.io.FileType
+
+buildscript {
+	ext {
+		kotlinVersion = '1.2.51'
+		springBootVersion = '2.0.4.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
+		classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
+		classpath "org.jetbrains.kotlin:kotlin-noarg:$kotlinVersion"
+	}
+}
+
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-spring'
+apply plugin: "kotlin-jpa"
+apply plugin: "kotlin-allopen"
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'ua.pp.ssenko'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+compileKotlin {
+	kotlinOptions {
+		freeCompilerArgs = ["-Xjsr305=strict"]
+		jvmTarget = "1.8"
+	}
+}
+compileTestKotlin {
+	kotlinOptions {
+		freeCompilerArgs = ["-Xjsr305=strict"]
+		jvmTarget = "1.8"
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+
+def webappDir = "$projectDir/src/main/webapp"
+sourceSets {
+	main {
+		resources {
+			srcDirs = ["$webappDir/dist", "$projectDir/src/main/resources"]
+		}
+	}
+}
+
+processResources {
+	dependsOn "buildAngular"
+}
+
+task buildAngular(type:Exec) {
+	// installAngular should be run prior to this task
+	dependsOn "installAngular"
+	workingDir "$webappDir"
+	inputs.dir "$webappDir"
+	// Add task to the standard build group
+	group = BasePlugin.BUILD_GROUP
+	// ng doesn't exist as a file in windows -> ng.cmd
+	if (System.getProperty("os.name").toUpperCase().contains("WINDOWS")){
+		commandLine "ng.cmd", "build"
+	} else {
+		commandLine "ng", "build"
+	}
+}
+
+task installAngular(type:Exec) {
+	workingDir "$webappDir"
+	inputs.dir "$webappDir"
+	group = BasePlugin.BUILD_GROUP
+	if (System.getProperty("os.name").toUpperCase().contains("WINDOWS")){
+		commandLine "npm.cmd", "install"
+	} else {
+		commandLine "npm", "install"
+	}
+}
+
+ext {
+	springCloudVersion = 'Finchley.SR1'
+}
+
+task translate {
+	doLast {
+
+		def en = new File(project.projectDir.toString() + '/src/main/webapp/src/assets/i18n/en.json')
+		def json = new groovy.json.JsonSlurper().parseText(en.text)
+
+		def regexp = """<ng-tr\\s* \\[key\\]="'(.*)'">\\s*</ng-tr>"""
+
+		def dir = new File(project.projectDir.toString() + '/src/main/webapp/src/app')
+		dir.eachFileRecurse (FileType.FILES) { file ->
+			if (file.name.endsWith('.html')) {
+
+				def fileName = file.name.replaceAll('\\W', '_').replaceAll('\\s', '_').toUpperCase()
+				if (!json[fileName]) {
+					json[fileName] = [:]
+				}
+
+				def html = file.text
+				def list = []
+				html.findAll(regexp) { result ->
+					def key = result[1]
+					key = key.trim().replaceAll('\\W', '_').replaceAll('\\s', '_').toUpperCase()
+					if (!result[1].startsWith(fileName)) {
+						list << [result[0], key]
+						json[fileName][key] = result[1]
+					}
+				}
+
+				list.forEach{
+						html = html.replace(it[0], """<ng-tr [key]="'${fileName}.${it[1]}'"></ng-tr>""")
+				}
+				file.write(html)
+			}
+		}
+
+		en.write(groovy.json.JsonOutput.prettyPrint(groovy.json.JsonOutput.toJson(json)))
+
+	}
+}
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-aop')
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.springframework.boot:spring-boot-starter-freemarker')
+	compile('org.springframework.boot:spring-boot-starter-mail')
+	compile('org.springframework.boot:spring-boot-starter-validation')
+	compile('org.springframework.boot:spring-boot-starter-web')
+
+	compile('org.springframework.boot:spring-boot-starter-security')
+	compile('org.springframework.cloud:spring-cloud-starter-oauth2')
+
+	compile('com.fasterxml.jackson.module:jackson-module-kotlin')
+	//compile('org.liquibase:liquibase-core')
+	compile('org.springframework.session:spring-session-core')
+	compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+	compile 'org.jetbrains.kotlin:kotlin-maven-noarg'
+
+	compile("org.jetbrains.kotlin:kotlin-reflect")
+
+	runtime('org.apache.derby:derby')
+	compileOnly('org.projectlombok:lombok')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile('org.springframework.security:spring-security-test')
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}

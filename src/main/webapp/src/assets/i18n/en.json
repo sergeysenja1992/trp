@@ -1,0 +1,20 @@
+{
+    "APP_COMPONENT_HTML": {
+        
+    },
+    "BOARDS_PAGE_COMPONENT_HTML": {
+        
+    },
+    "BOARD_CREATE_DIALOG_COMPONENT_HTML": {
+        "NAME": "Name",
+        "NAME_OF_BOARD_REQUIRED": "Name of board required"
+    },
+    "WELCOME_PAGE_COMPONENT_HTML": {
+        "WELCOME_TO_STORIES_SYSTEM": "Welcome to stories system.",
+        "LOGIN_TO_START_USING": "Login to start using.",
+        "LOGIN_WITH_GOOGLE": "Login with Google"
+    },
+    "MY_NAV_COMPONENT_HTML": {
+        
+    }
+}

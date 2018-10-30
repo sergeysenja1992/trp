@@ -1,0 +1,32 @@
+
+.fullscreen {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.toolbar {
+    position: fixed;
+    /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+    z-index: 2;
+}
+
+.toolbar-content {
+    height: 60px;
+    font-size: 400px;
+}
+
+.sidenav-container {
+    flex: 1;
+    margin-top: 60px;
+}
+
+.app-sidenav {
+    width: 200px;
+}
+
+

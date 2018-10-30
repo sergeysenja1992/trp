@@ -1,0 +1,12 @@
+import groovy.io.FileType
+
+def projectDir = project.projectDir.toString()
+
+def list = []
+
+def dir = new File(projectDir)
+dir.eachFileRecurse (FileType.FILES) { file ->
+    list << file
+}
+
+println list

@@ -1,0 +1,48 @@
+
+spring:
+  datasource:
+    url: jdbc:derby:/home/ssenko/db;create=true
+    username: dbuser
+    password: dbpass
+    driver-class-name: org.apache.derby.jdbc.EmbeddedDriver
+  jpa:
+    database-platform: org.hibernate.dialect.DerbyDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        show_sql: true
+        use_sql_comments: true
+        format_sql: true
+#  mvc:
+#    static-path-pattern: /ui/**
+
+security:
+  oauth2:
+    client:
+      clientId: 310656374421-j1lu9g4n10oslok1ard9cn41kk0993av.apps.googleusercontent.com
+      clientSecret: M17nKOY8O8JbX-djmHp6KC_5
+      accessTokenUri: https://www.googleapis.com/oauth2/v4/token
+      userAuthorizationUri: https://accounts.google.com/o/oauth2/v2/auth
+      clientAuthenticationScheme: form
+      scope:
+        - openid
+        - email
+        - profile
+    resource:
+      userInfoUri: https://www.googleapis.com/oauth2/v3/userinfo
+      preferTokenInfo: true
+# Server configuration
+server:
+ port: 8080
+
+
+logging:
+  level:
+    org.springframework.web: ERROR
+    ua.pp.ssenko: DEBUG
+  pattern:
+    console: '%d{"yyyy/MM/dd HH:mm:ss,SSS"} [%p] [%t] %M\(%F:%L\) - %msg%n'
+    file: '%d{"yyyy/MM/dd HH:mm:ss,SSS"} [%p] [%t] %M\(%F:%L\) - %msg%n'
+  file: /logs/application.log
