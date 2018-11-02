@@ -1,5 +1,6 @@
 package ua.pp.ssenko.stories.config
 
+import getEmail
 import log
 import org.springframework.beans.factory.annotation.Configurable
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso
@@ -20,6 +21,7 @@ import org.springframework.security.web.authentication.HttpStatusEntryPoint
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher
+import ua.pp.ssenko.stories.service.UserService
 
 
 /**
@@ -32,7 +34,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher
 class OAuthSecurityConfig(
         private val oauth2ClientContext: OAuth2ClientContext,
         private val authorizationCodeResourceDetails: AuthorizationCodeResourceDetails,
-        private val resourceServerProperties: ResourceServerProperties
+        private val resourceServerProperties: ResourceServerProperties,
+        private val userService: UserService
 ) : WebSecurityConfigurerAdapter() {
 
     override fun configure(web: WebSecurity) {
@@ -70,6 +73,7 @@ class OAuthSecurityConfig(
             override fun loadAuthentication(accessToken: String?): OAuth2Authentication {
                 val authentication = super.loadAuthentication(accessToken)
                 log.info("Load user {}", authentication)
+                userService.createUserIfNotExists(authentication.getEmail())
                 return authentication
             }
         })

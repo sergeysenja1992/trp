@@ -12,18 +12,11 @@
     <mat-sidenav-container class="sidenav-container">
         <mat-sidenav #sidenav mode="over" class="app-sidenav">
             <mat-nav-list>
-                <a *ngIf="isAuthentificated" mat-list-item class="sidenav-link" [routerLink]="['/boards-page']" (click)="sidenav.toggle()">
+             <!--   <a *ngIf="isAuthentificated" mat-list-item class="sidenav-link" [routerLink]="['/boards-page']" (click)="sidenav.toggle()">
                     <mat-icon mat-list-icon>picture_in_picture</mat-icon>
                     <span class="title" mat-line>Boards</span>
-                </a>
-                <a *ngIf="isAuthentificated && board" mat-list-item class="sidenav-link" [routerLink]="['/boards-page']" (click)="sidenav.toggle()">
-                    <mat-icon mat-list-icon>view_quilt</mat-icon>
-                    <span class="title" mat-line>On board view</span>
-                </a>
-                <a *ngIf="isAuthentificated && board" mat-list-item class="sidenav-link" [routerLink]="['/boards-page']" (click)="sidenav.toggle()">
-                    <mat-icon mat-list-icon>view_quilt</mat-icon>
-                    <span class="title" mat-line></span>
-                </a>
+                </a> -->
+
             </mat-nav-list>
         </mat-sidenav>
         <mat-sidenav-content >

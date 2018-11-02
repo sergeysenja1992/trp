@@ -20,28 +20,18 @@ import {
 } from '@angular/material';
 
 import {WelcomePageComponent} from './welcome-page/welcome-page.component';
-import {BoardsPageComponent} from './boards-page/boards-page.component';
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
-import {AuthExpiredInterceptor} from './interceptor/auth-expired.interceptor'
-import {AccountService} from './account/account.service'
-import {ContextService} from './context/context.service'
-import { BoardCreateDialogComponent } from './boards-page/board-create-dialog/board-create-dialog.component'
-import {BoardsService} from './boards-page/boards.service'
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core'
+import {AuthExpiredInterceptor} from './interceptor/auth-expired.interceptor';
+import {AccountService} from './account/account.service';
+import {ContextService} from './context/context.service';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { NgTrComponent } from './ng-tr/ng-tr.component';
-import { BoardComponent } from './board/board.component'
 import {AngularDraggableModule} from 'angular2-draggable';
-import { GoalComponent } from './board/goal/goal.component';
-import { StepComponent } from './board/step/step.component';
-import { StoryComponent } from './board/story/story.component';
-import { ReleaseComponent } from './board/release/release.component'
 
 const appRoutes: Routes = [
     { path: '', component: WelcomePageComponent},
-    { path: 'welcome-page', component: WelcomePageComponent},
-    { path: 'boards-page', component: BoardsPageComponent},
-    { path: 'board', component: BoardComponent}
+    { path: 'welcome-page', component: WelcomePageComponent}
 ];
 
 @NgModule({
@@ -49,18 +39,10 @@ const appRoutes: Routes = [
         AppComponent,
         MyNavComponent,
         WelcomePageComponent,
-        BoardsPageComponent,
-        BoardsPageComponent,
-        BoardCreateDialogComponent,
-        NgTrComponent,
-        BoardComponent,
-        GoalComponent,
-        StepComponent,
-        StoryComponent,
-        ReleaseComponent
+        NgTrComponent
     ],
     entryComponents: [
-        BoardCreateDialogComponent
+
     ],
     imports: [
         BrowserModule,
@@ -93,7 +75,6 @@ const appRoutes: Routes = [
     ],
     providers: [
         AccountService,
-        BoardsService,
         ContextService,
         {
             provide: HTTP_INTERCEPTORS,

@@ -16,11 +16,11 @@ class UserService(
         private val userRepository: UserRepository
 ) {
 
-    fun createUserIfNotExists(principal: Principal) {
-        val user = userRepository.findByEmail(principal.getEmail())
+    fun createUserIfNotExists(email: String) {
+        val user = userRepository.findByEmail(email)
         if (user == null) {
-            log.info("Create user with email {}", principal.getEmail());
-            userRepository.save(Account(principal.getEmail()))
+            log.info("Create user with email {}", email);
+            userRepository.save(Account(email = email))
         }
     }
 

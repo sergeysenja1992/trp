@@ -17,7 +17,6 @@ class UserRestController (
     @RequestMapping(value = ["/user"], method = [RequestMethod.GET])
     @ResponseBody
     fun user(user: Principal): Map<String, Any> {
-        userService.createUserIfNotExists(user)
         return user.getDetails()
     }
 
