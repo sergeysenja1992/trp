@@ -6,7 +6,7 @@ spring:
     password: dbpass
     driver-class-name: org.apache.derby.jdbc.EmbeddedDriver
   jpa:
-    database-platform: org.hibernate.dialect.DerbyDialect
+    database-platform: org.hibernate.dialect.DerbyTenSevenDialect
     show-sql: true
     hibernate:
       ddl-auto: create
