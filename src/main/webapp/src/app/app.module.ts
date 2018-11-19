@@ -31,7 +31,8 @@ import {AngularDraggableModule} from 'angular2-draggable';
 
 const appRoutes: Routes = [
     { path: '', component: WelcomePageComponent},
-    { path: 'welcome-page', component: WelcomePageComponent}
+    { path: 'welcome-page', component: WelcomePageComponent},
+    { path: 'kindergartens', component: WelcomePageComponent}
 ];
 
 @NgModule({

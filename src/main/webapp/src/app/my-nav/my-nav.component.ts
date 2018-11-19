@@ -26,9 +26,6 @@ export class MyNavComponent implements OnInit, OnDestroy {
         this.subscriptions.push(
             this.contextService.subscribe('user', (user: any) => this.isAuthentificated = user)
         );
-        this.subscriptions.push(
-            this.contextService.subscribe('board', (board: any) => this.board = board)
-        );
     }
 
     ngOnDestroy(): void {

@@ -1,7 +1,7 @@
 <div class="fullscreen">
 
     <mat-toolbar id="appToolbar" color="primary" class="toolbar toolbar-content">
-        <button mat-icon-button (click)="sidenav.toggle()" class="mat-icon-button sidenav-toggle-button">
+        <button *ngIf="isAuthentificated" mat-icon-button (click)="sidenav.toggle()" class="mat-icon-button sidenav-toggle-button">
             <mat-icon class="material-icons">menu</mat-icon>
         </button>
         <h1 class="component-title">
