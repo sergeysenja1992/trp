@@ -1,6 +1,6 @@
-package ua.pp.ssenko.stories.domain
+package ua.pp.ssenko.trp.domain
 
-import ua.pp.ssenko.stories.web.error.ForbiddenException
+import ua.pp.ssenko.trp.web.error.ForbiddenException
 import java.time.DayOfWeek
 import java.time.Instant
 import java.time.LocalDate

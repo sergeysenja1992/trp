@@ -1,7 +1,6 @@
-package ua.pp.ssenko.stories
+package ua.pp.ssenko.trp
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso
 import org.springframework.boot.runApplication
 
 @SpringBootApplication

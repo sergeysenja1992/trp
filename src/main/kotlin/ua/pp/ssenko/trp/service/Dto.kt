@@ -1,2 +1,2 @@
-package ua.pp.ssenko.stories.service
+package ua.pp.ssenko.trp.service
 

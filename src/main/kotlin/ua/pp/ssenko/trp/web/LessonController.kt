@@ -1,11 +1,11 @@
-package ua.pp.ssenko.stories.web
+package ua.pp.ssenko.trp.web
 
 import getEmail
 import org.springframework.web.bind.annotation.*
-import ua.pp.ssenko.stories.domain.Account
-import ua.pp.ssenko.stories.domain.Lesson
-import ua.pp.ssenko.stories.domain.PeriodType
-import ua.pp.ssenko.stories.service.LessonService
+import ua.pp.ssenko.trp.domain.Account
+import ua.pp.ssenko.trp.domain.Lesson
+import ua.pp.ssenko.trp.domain.PeriodType
+import ua.pp.ssenko.trp.service.LessonService
 import java.security.Principal
 import java.time.DayOfWeek
 import java.time.LocalDate

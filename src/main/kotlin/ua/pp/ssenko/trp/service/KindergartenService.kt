@@ -1,9 +1,9 @@
-package ua.pp.ssenko.stories.service
+package ua.pp.ssenko.trp.service
 
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import ua.pp.ssenko.stories.domain.Kindergarten
-import ua.pp.ssenko.stories.web.KindergartenDto
+import ua.pp.ssenko.trp.domain.Kindergarten
+import ua.pp.ssenko.trp.web.KindergartenDto
 
 @Service
 @Transactional

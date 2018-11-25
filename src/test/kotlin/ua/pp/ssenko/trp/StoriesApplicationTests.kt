@@ -1,13 +1,13 @@
-package ua.pp.ssenko.stories
+package ua.pp.ssenko.trp
 
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.junit4.SpringRunner
-import ua.pp.ssenko.stories.domain.Account
-import ua.pp.ssenko.stories.service.LessonService
-import ua.pp.ssenko.stories.service.UserRepository
+import ua.pp.ssenko.trp.domain.Account
+import ua.pp.ssenko.trp.service.LessonService
+import ua.pp.ssenko.trp.service.UserRepository
 import java.time.LocalDate
 
 @RunWith(SpringRunner::class)

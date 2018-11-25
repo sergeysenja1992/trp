@@ -1,6 +1,4 @@
-package ua.pp.ssenko.stories.config.exceptions
-
-import lombok.Getter
+package ua.pp.ssenko.trp.config.exceptions
 
 import java.util.HashMap
 

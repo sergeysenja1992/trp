@@ -1,9 +1,9 @@
-package ua.pp.ssenko.stories.service
+package ua.pp.ssenko.trp.service
 
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import ua.pp.ssenko.stories.domain.Group
-import ua.pp.ssenko.stories.web.GroupDto
+import ua.pp.ssenko.trp.domain.Group
+import ua.pp.ssenko.trp.web.GroupDto
 
 @Service
 @Transactional

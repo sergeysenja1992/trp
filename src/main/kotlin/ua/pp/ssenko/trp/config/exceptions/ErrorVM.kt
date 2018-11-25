@@ -1,6 +1,4 @@
-package ua.pp.ssenko.stories.config.exceptionsprivate
-
-import lombok.Getter
+package ua.pp.ssenko.trp.config.exceptionsprivate
 
 import java.io.Serializable
 

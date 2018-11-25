@@ -1,13 +1,11 @@
-package ua.pp.ssenko.stories.web
+package ua.pp.ssenko.trp.web
 
 import getEmail
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.bind.annotation.RequestMethod.*
-import ua.pp.ssenko.stories.domain.Group
-import ua.pp.ssenko.stories.domain.Kindergarten
-import ua.pp.ssenko.stories.service.GroupService
+import ua.pp.ssenko.trp.domain.Group
+import ua.pp.ssenko.trp.service.GroupService
 import java.security.Principal
-import java.time.Instant
 import java.time.LocalDate
 
 @RestController

@@ -1,4 +1,4 @@
-package ua.pp.ssenko.stories.config;
+package ua.pp.ssenko.trp.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;

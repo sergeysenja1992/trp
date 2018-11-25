@@ -1,4 +1,4 @@
-package ua.pp.ssenko.stories.config.exceptions
+package ua.pp.ssenko.trp.config.exceptions
 
 /**
  * Custom esception for Not found entity by ID.

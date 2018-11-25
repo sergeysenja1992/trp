@@ -1,10 +1,10 @@
-package ua.pp.ssenko.stories.web
+package ua.pp.ssenko.trp.web
 
 import getEmail
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.bind.annotation.RequestMethod.*
-import ua.pp.ssenko.stories.domain.Student
-import ua.pp.ssenko.stories.service.StudentService
+import ua.pp.ssenko.trp.domain.Student
+import ua.pp.ssenko.trp.service.StudentService
 import java.security.Principal
 import java.time.LocalDate
 

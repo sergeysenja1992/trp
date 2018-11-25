@@ -1,6 +1,5 @@
-package ua.pp.ssenko.stories.web.error
+package ua.pp.ssenko.trp.web.error
 
-import org.springframework.http.HttpStatus
 import org.springframework.http.HttpStatus.*
 import org.springframework.web.bind.annotation.ResponseStatus
 

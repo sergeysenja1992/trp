@@ -1,4 +1,4 @@
-package ua.pp.ssenko.stories.config.exceptions
+package ua.pp.ssenko.trp.config.exceptions
 
 object ErrorConstants {
 

@@ -1,6 +1,6 @@
-package ua.pp.ssenko.stories.config.exceptions
+package ua.pp.ssenko.trp.config.exceptions
 
-import ua.pp.ssenko.stories.config.exceptionsprivate.ErrorVM
+import ua.pp.ssenko.trp.config.exceptionsprivate.ErrorVM
 import java.io.Serializable
 
 /**

@@ -1,14 +1,14 @@
-package ua.pp.ssenko.stories.service
+package ua.pp.ssenko.trp.service
 
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import thenDo
 import toSet
-import ua.pp.ssenko.stories.domain.Lesson
-import ua.pp.ssenko.stories.domain.PeriodType
-import ua.pp.ssenko.stories.domain.PeriodType.WEEK
-import ua.pp.ssenko.stories.utls.RangeByDate
-import ua.pp.ssenko.stories.web.LessonDto
+import ua.pp.ssenko.trp.domain.Lesson
+import ua.pp.ssenko.trp.domain.PeriodType
+import ua.pp.ssenko.trp.domain.PeriodType.WEEK
+import ua.pp.ssenko.trp.utls.RangeByDate
+import ua.pp.ssenko.trp.web.LessonDto
 import java.time.LocalDate
 
 @Service

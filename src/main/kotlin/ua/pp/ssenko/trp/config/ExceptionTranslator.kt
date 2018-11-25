@@ -1,4 +1,4 @@
-package ua.pp.ssenko.stories.config
+package ua.pp.ssenko.trp.config
 
 import log
 import lombok.extern.slf4j.Slf4j
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.ResponseBody
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.client.HttpServerErrorException
-import ua.pp.ssenko.stories.config.exceptions.*
-import ua.pp.ssenko.stories.config.exceptionsprivate.ErrorVM
+import ua.pp.ssenko.trp.config.exceptions.*
+import ua.pp.ssenko.trp.config.exceptionsprivate.ErrorVM
 
 @Slf4j
 @ControllerAdvice

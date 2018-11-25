@@ -1,9 +1,9 @@
-package ua.pp.ssenko.stories.service
+package ua.pp.ssenko.trp.service
 
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import ua.pp.ssenko.stories.domain.Student
-import ua.pp.ssenko.stories.web.StudentDto
+import ua.pp.ssenko.trp.domain.Student
+import ua.pp.ssenko.trp.web.StudentDto
 import java.time.LocalDate
 
 

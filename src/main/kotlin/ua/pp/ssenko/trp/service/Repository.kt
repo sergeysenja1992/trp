@@ -1,12 +1,11 @@
-package ua.pp.ssenko.stories.service
+package ua.pp.ssenko.trp.service
 
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
-import ua.pp.ssenko.stories.domain.*
-import ua.pp.ssenko.stories.web.error.NotFoundException
+import ua.pp.ssenko.trp.domain.*
+import ua.pp.ssenko.trp.web.error.NotFoundException
 import java.time.DayOfWeek
-import java.time.Instant
 import java.time.LocalDate
 
 interface KindergartenRepository: JpaRepository<Kindergarten, Long> {

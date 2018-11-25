@@ -1,14 +1,10 @@
-package ua.pp.ssenko.stories.service
+package ua.pp.ssenko.trp.service
 
-import getEmail
 import log
-import lombok.extern.slf4j.Slf4j
-import org.springframework.data.jpa.repository.Lock
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import ua.pp.ssenko.stories.domain.Account
-import java.security.Principal
+import ua.pp.ssenko.trp.domain.Account
 
 @Service
 @Transactional
