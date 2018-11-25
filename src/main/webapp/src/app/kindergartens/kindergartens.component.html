@@ -1,0 +1,55 @@
+
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="w-100">
+
+      <ng-container *ngFor="let kindergarten of kindergartens">
+
+      <mat-card class="card">
+        <mat-card-header class="d-flex">
+          <mat-card-title class="name">{{kindergarten.name}}</mat-card-title>
+          <mat-menu #appMenu="matMenu">
+            <button mat-menu-item (click)="edit(kindergarten)">
+              <mat-icon class="material-icons">edit</mat-icon>
+              <ng-tr [key]="'Edit kindergarten'"></ng-tr>
+            </button>
+            <button mat-menu-item (click)="remove(kindergarten)">
+              <mat-icon class="material-icons">delete</mat-icon>
+              <ng-tr [key]="'Delete kindergarten'"></ng-tr>
+            </button>
+            <button mat-menu-item>
+              <mat-icon class="material-icons">add</mat-icon>
+              <ng-tr [key]="'Add new group'"></ng-tr>
+            </button>
+          </mat-menu>
+          <button mat-icon-button class="menu ml-auto" [matMenuTriggerFor]="appMenu">
+            <mat-icon class="material-icons">more_vert</mat-icon>
+          </button>
+        </mat-card-header>
+        <mat-card-content>
+
+          <table class="table table-hover">
+            <tbody>
+            <tr>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            </tbody>
+          </table>
+
+        </mat-card-content>
+      </mat-card>
+
+      </ng-container>
+
+      <div class="fab-button-padding">&nbsp;</div>
+
+      <button mat-fab color="primary" class="add-button" (click)="openDialog()">
+        <mat-icon>add</mat-icon>
+      </button>
+
+    </div>
+  </div>
+</div>
+
+

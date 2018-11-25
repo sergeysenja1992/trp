@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import ua.pp.ssenko.stories.domain.Student
 import ua.pp.ssenko.stories.web.StudentDto
-import java.time.Instant
 import java.time.LocalDate
 
 
@@ -43,5 +42,12 @@ class StudentService(
         }
     }
 
+    fun retire(id: Long, email: String) {
+        val student = studentRepository.getStudent(id)
+        student.group.assertOwner(email)
+        studentRepository.save(student.apply {
+            removed = true
+        })
+    }
 
 }

@@ -36,6 +36,12 @@ class GroupController (
         return groupService.getGroupsByOwner(user.getEmail())
     }
 
+    @RequestMapping(value = ["/groups/{id}"], method = [DELETE])
+    @ResponseBody
+    fun retireGroups(@PathVariable("id") id: Long, user: Principal) {
+        groupService.retire(id, user.getEmail())
+    }
+
 }
 
 data class GroupDto (

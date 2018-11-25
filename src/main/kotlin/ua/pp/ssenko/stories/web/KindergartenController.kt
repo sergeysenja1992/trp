@@ -27,6 +27,12 @@ class KindergartenController (
         return kindergartenService.updateKindergarten(id, kindergarten, user.getEmail())
     }
 
+    @RequestMapping(value = ["/kindergartens/{id}"], method = [DELETE])
+    @ResponseBody
+    fun retireKindergarten(@PathVariable("id") id: Long, user: Principal) {
+        kindergartenService.retire(id, user.getEmail())
+    }
+
     @RequestMapping(value = ["/kindergartens"], method = [GET])
     @ResponseBody
     fun findAll(user: Principal): List<Kindergarten> {

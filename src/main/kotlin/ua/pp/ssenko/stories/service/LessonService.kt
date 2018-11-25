@@ -108,4 +108,12 @@ class LessonService (
         return lessonRepository.findLessonsForUserByDate(date, LocalDate.now().dayOfWeek, owner)
     }
 
+    fun retire(id: Long, email: String) {
+        val lesson = lessonRepository.getLesson(id)
+        lesson.assertOwner(email)
+        lessonRepository.save(lesson.apply {
+            removed = true
+        })
+    }
+
 }

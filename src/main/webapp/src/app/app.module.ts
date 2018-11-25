@@ -29,8 +29,8 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { NgTrComponent } from './ng-tr/ng-tr.component';
 import {AngularDraggableModule} from 'angular2-draggable';
 import { KindergartensComponent } from './kindergartens/kindergartens.component';
-import {KindergartensService} from './kindergartens/kindergartens.service';
-import { KidergartenDialogComponent } from './kindergartens/kidergarten-dialog/kidergarten-dialog.component';
+import { KindergartensService } from './kindergartens/kindergartens.service';
+import { KindergartenDialogComponent } from './kindergartens/kindergarten-dialog/kindergarten-dialog.component';
 
 const appRoutes: Routes = [
     { path: '', component: WelcomePageComponent},
@@ -45,10 +45,10 @@ const appRoutes: Routes = [
         WelcomePageComponent,
         NgTrComponent,
         KindergartensComponent,
-        KidergartenDialogComponent
+        KindergartenDialogComponent
     ],
     entryComponents: [
-        KidergartenDialogComponent
+        KindergartenDialogComponent
     ],
     imports: [
         BrowserModule,

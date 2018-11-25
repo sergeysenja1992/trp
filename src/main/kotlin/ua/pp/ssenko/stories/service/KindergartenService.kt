@@ -33,4 +33,12 @@ class KindergartenService(
         return kindergartenRepository.findByOwnerAndRemovedIsFalse(account)
     }
 
+    fun retire(id: Long, email: String) {
+        val kindergarten = kindergartenRepository.getKindergarten(id)
+        kindergarten.assertOwner(email)
+        kindergartenRepository.save(kindergarten.apply {
+            removed = true
+        })
+    }
+
 }

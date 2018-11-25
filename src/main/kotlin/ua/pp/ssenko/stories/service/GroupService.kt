@@ -38,4 +38,12 @@ class GroupService(
         return groupRepository.findByOwnerAndRemovedIsFalse(account)
     }
 
+    fun retire(id: Long, email: String) {
+        val group = groupRepository.getGroup(id)
+        group.assertOwner(email)
+        groupRepository.save(group.apply {
+            removed = true
+        })
+    }
+
 }

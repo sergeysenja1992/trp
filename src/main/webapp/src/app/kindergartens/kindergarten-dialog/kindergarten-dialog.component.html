@@ -1,0 +1,21 @@
+<form #form="ngForm" novalidate class="create-form">
+  <h3 mat-dialog-title><ng-tr [key]="'Add kindergarten'"></ng-tr></h3>
+  <div mat-dialog-content>
+    <div class="container">
+      <div class="row">
+        <mat-form-field class="w-100">
+          <mat-label><ng-tr [key]="'Name'"></ng-tr></mat-label>
+          <input matInput type="text" maxlength="255" required  name="name" [(ngModel)]="kindergarten.name" #name="ngModel">
+          <mat-error *ngIf="name.errors?.required">
+            <ng-tr [key]="'Name is required field'"></ng-tr>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions class="d-flex flex-row-reverse">
+    <button mat-flat-button color="primary" (click)="save()"><ng-tr [key]="'Save'"></ng-tr></button>
+    <div class="padding-right">&nbsp;</div>
+    <button mat-button (click)="cancel()"><ng-tr [key]="'Cancel'"></ng-tr></button>
+  </div>
+</form>

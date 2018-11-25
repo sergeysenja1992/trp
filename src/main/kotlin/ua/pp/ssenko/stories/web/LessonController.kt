@@ -46,6 +46,12 @@ class LessonController(
         return lessonService.getLessonsByDate(date, user.getEmail())
     }
 
+    @RequestMapping(value = ["/lessons/{id}"], method = [RequestMethod.DELETE])
+    @ResponseBody
+    fun retireGroups(@PathVariable("id") id: Long, user: Principal) {
+        lessonService.retire(id, user.getEmail())
+    }
+
 }
 
 data class LessonDto (

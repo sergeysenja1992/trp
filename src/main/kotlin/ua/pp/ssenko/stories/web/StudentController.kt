@@ -36,7 +36,11 @@ class StudentController(
         return studentService.getStudentsByGroup(groupId, endDate, user.getEmail())
     }
 
-
+    @RequestMapping(value = ["/students/{id}"], method = [RequestMethod.DELETE])
+    @ResponseBody
+    fun retireGroups(@PathVariable("id") id: Long, user: Principal) {
+        studentService.retire(id, user.getEmail())
+    }
 
 }
 
