@@ -13,7 +13,7 @@ import {
     MatCardModule, MatDialogModule, MatFormFieldModule,
     MatGridListModule, MatHint,
     MatIconModule, MatInputModule,
-    MatListModule,
+    MatListModule, MatMenuModule,
     MatSidenavModule, MatSortModule,
     MatTableModule,
     MatToolbarModule
@@ -28,11 +28,14 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { NgTrComponent } from './ng-tr/ng-tr.component';
 import {AngularDraggableModule} from 'angular2-draggable';
+import { KindergartensComponent } from './kindergartens/kindergartens.component';
+import {KindergartensService} from './kindergartens/kindergartens.service';
+import { KidergartenDialogComponent } from './kindergartens/kidergarten-dialog/kidergarten-dialog.component';
 
 const appRoutes: Routes = [
     { path: '', component: WelcomePageComponent},
     { path: 'welcome-page', component: WelcomePageComponent},
-    { path: 'kindergartens', component: WelcomePageComponent}
+    { path: 'kindergartens', component: KindergartensComponent}
 ];
 
 @NgModule({
@@ -40,10 +43,12 @@ const appRoutes: Routes = [
         AppComponent,
         MyNavComponent,
         WelcomePageComponent,
-        NgTrComponent
+        NgTrComponent,
+        KindergartensComponent,
+        KidergartenDialogComponent
     ],
     entryComponents: [
-
+        KidergartenDialogComponent
     ],
     imports: [
         BrowserModule,
@@ -69,6 +74,7 @@ const appRoutes: Routes = [
         MatDialogModule,
         MatInputModule,
         MatFormFieldModule,
+        MatMenuModule,
         FormsModule,
         ReactiveFormsModule,
         MatTableModule,
@@ -77,6 +83,7 @@ const appRoutes: Routes = [
     providers: [
         AccountService,
         ContextService,
+        KindergartensService,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthExpiredInterceptor,

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Event, Router, RouterEvent} from '@angular/router'
-import {AccountService} from './account/account.service'
-import {TranslateService} from '@ngx-translate/core'
+import {Event, Router, RouterEvent} from '@angular/router';
+import {AccountService} from './account/account.service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +24,5 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit(): void {
-
     }
 }

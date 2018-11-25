@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core'
-import {HttpClient} from '@angular/common/http'
-import {BehaviorSubject} from 'rxjs/Rx'
-import {ContextService} from '../context/context.service'
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {BehaviorSubject} from 'rxjs/Rx';
+import {ContextService} from '../context/context.service';
 
 @Injectable()
 export class AccountService {
@@ -31,16 +31,19 @@ export class AccountService {
             this.contextService.emit('user', res);
         }, (error) => {
             console.error(error);
+            if (error.status === 401) {
+                this.contextService.emit('user', 'UNAUTHORIZED');
+            }
         });
     }
 
     logout() {
-        this.resetUser()
+        this.resetUser();
         this.http.post('/logout', {});
     }
 
     resetUser() {
-        this.userSubject.next("UNAUTHORIZED");
+        this.userSubject.next('UNAUTHORIZED');
         this.user = null;
         this.contextService.emit('user', null);
     }

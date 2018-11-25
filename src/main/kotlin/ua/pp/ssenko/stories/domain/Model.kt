@@ -10,24 +10,43 @@ import javax.persistence.GenerationType.IDENTITY
 
 @Entity
 data class Account (
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
-    val id: Long = 0,
-    @Column(unique = true)
-    var email: String
+        @Id
+        @GeneratedValue(strategy = IDENTITY)
+        val id: Long = 0,
+        @Column(unique = true)
+        var email: String
 )
+
+@Entity
+data class Kindergarten (
+        @Id
+        @GeneratedValue(strategy = IDENTITY)
+        val id: Long = 0,
+        var name: String,
+        @ManyToOne
+        var owner: Account,
+        var removed: Boolean = false
+) {
+    fun assertOwner(email: String) {
+        if (!owner.email.equals(email)) {
+            throw ForbiddenException("user.not.owner")
+        }
+    }
+}
 
 @Entity
 @Table(name = "lesson_group")
 data class Group (
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
-    val id: Long = 0,
-    var name: String,
-    @ManyToOne
-    var owner: Account,
-    var endDate: LocalDate? = null,
-    var removed: Boolean = false
+        @Id
+        @GeneratedValue(strategy = IDENTITY)
+        val id: Long = 0,
+        var name: String,
+        @ManyToOne
+        val kindergarten: Kindergarten,
+        @ManyToOne
+        var owner: Account,
+        var endDate: LocalDate? = null,
+        var removed: Boolean = false
 ) {
     fun assertOwner(email: String) {
         if (!owner.email.equals(email)) {

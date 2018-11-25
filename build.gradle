@@ -55,7 +55,7 @@ sourceSets {
 }
 
 processResources {
-	dependsOn "buildAngular"
+	//dependsOn "buildAngular"
 }
 
 task buildAngular(type:Exec) {

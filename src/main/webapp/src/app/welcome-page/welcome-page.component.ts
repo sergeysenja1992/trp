@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router'
-import {AccountService} from '../account/account.service'
+import {Router} from '@angular/router';
+import {AccountService} from '../account/account.service';
 
 @Component({
   selector: 'app-welcome-page',
@@ -9,7 +9,7 @@ import {AccountService} from '../account/account.service'
 })
 export class WelcomePageComponent implements OnInit {
 
-  isAuthenticated = true;
+  isAuthenticated: any = false;
 
   constructor(
       private router: Router,
@@ -19,9 +19,9 @@ export class WelcomePageComponent implements OnInit {
   ngOnInit() {
     this.accountService.identify().subscribe(user => {
         this.isAuthenticated = user;
-        if (this.isAuthenticated) {
+        if (this.isAuthenticated && this.isAuthenticated !== 'UNAUTHORIZED') {
             console.log('User authenticated');
-            this.router.navigate(['/boards-page'])
+            this.router.navigate(['/kindergartens']);
         }
         console.log(this.isAuthenticated);
     });

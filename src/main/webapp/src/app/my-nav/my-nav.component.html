@@ -10,12 +10,17 @@
     </mat-toolbar>
 
     <mat-sidenav-container class="sidenav-container">
+
         <mat-sidenav #sidenav mode="over" class="app-sidenav">
             <mat-nav-list>
-             <!--   <a *ngIf="isAuthentificated" mat-list-item class="sidenav-link" [routerLink]="['/boards-page']" (click)="sidenav.toggle()">
+                <a *ngIf="isAuthentificated" mat-list-item class="sidenav-link" [routerLink]="['/kindergartens']" (click)="sidenav.toggle()">
                     <mat-icon mat-list-icon>picture_in_picture</mat-icon>
-                    <span class="title" mat-line>Boards</span>
-                </a> -->
+                    <span class="title" mat-line><ng-tr [key]="'Kindergartens'"></ng-tr></span>
+                </a>
+                <a *ngIf="isAuthentificated" mat-list-item class="sidenav-link" [routerLink]="['/lessons']" (click)="sidenav.toggle()">
+                    <mat-icon mat-list-icon>picture_in_picture</mat-icon>
+                    <span class="title" mat-line><ng-tr [key]="'Lessons'"></ng-tr></span>
+                </a>
 
             </mat-nav-list>
         </mat-sidenav>

@@ -9,26 +9,28 @@ import ua.pp.ssenko.stories.web.GroupDto
 @Transactional
 class GroupService(
         private val groupRepository: GroupRepository,
-        private val userRepository: UserRepository
+        private val userRepository: UserRepository,
+        private val kindergartenRepository: KindergartenRepository
 ) {
 
     fun createGroup(group: GroupDto, email: String): Group {
         val account = userRepository.getByEmail(email)
+        val kindergarten = kindergartenRepository.getKindergarten(group.kindergartenId)
         return groupRepository.save(Group(
                 name = group.name,
-                owner = account
+                owner = account,
+                kindergarten = kindergarten
         ))
     }
 
     fun updateGroup(id: Long, groupDto: GroupDto, email: String): Group {
         val group = groupRepository.getGroup(id)
         group.assertOwner(email)
-        group.apply {
+        return groupRepository.save(group.apply {
             name = groupDto.name
             endDate = groupDto.endDate
             removed = groupDto.removed
-        }
-        return group
+        })
     }
 
     fun getGroupsByOwner(email: String): List<Group> {

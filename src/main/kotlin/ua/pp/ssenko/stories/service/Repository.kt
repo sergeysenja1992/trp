@@ -9,6 +9,17 @@ import java.time.DayOfWeek
 import java.time.Instant
 import java.time.LocalDate
 
+interface KindergartenRepository: JpaRepository<Kindergarten, Long> {
+    fun findByOwnerAndRemovedIsFalse(owner: Account): List<Kindergarten>
+    fun findByIdIsIn(groups: MutableSet<Long>): List<Kindergarten>
+}
+
+fun KindergartenRepository.getKindergarten(id: Long): Kindergarten {
+    return findById(id).orElseThrow {
+        throw NotFoundException("error.kindergarten.not.found")
+    }
+}
+
 interface GroupRepository: JpaRepository<Group, Long> {
     fun findByOwnerAndRemovedIsFalse(owner: Account): List<Group>
     fun findByIdIsIn(groups: MutableSet<Long>): List<Group>

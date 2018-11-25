@@ -4,6 +4,7 @@ import getEmail
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.bind.annotation.RequestMethod.*
 import ua.pp.ssenko.stories.domain.Group
+import ua.pp.ssenko.stories.domain.Kindergarten
 import ua.pp.ssenko.stories.service.GroupService
 import java.security.Principal
 import java.time.Instant
@@ -39,6 +40,9 @@ class GroupController (
 
 data class GroupDto (
         var name: String,
+        var kindergartenId: Long,
         var endDate: LocalDate?,
         var removed: Boolean = false
-)
+) {
+
+}
