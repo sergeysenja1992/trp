@@ -4,6 +4,7 @@ import {Injectable} from '@angular/core';
 import {Kindergarten} from './kindergarten.model';
 import {Observable} from 'rxjs/Rx';
 
+
 @Injectable()
 export class KindergartensService {
 
@@ -22,4 +23,9 @@ export class KindergartensService {
             return this.http.post('/api/kindergartens', kindergarten);
         }
     }
+
+    remove(id: number) {
+        return this.http.delete('/api/kindergartens/' + id);
+    }
+
 }

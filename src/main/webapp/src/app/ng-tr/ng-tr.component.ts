@@ -1,4 +1,6 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {TranslatePipe} from '@ngx-translate/core';
+import {TrpService} from './trp.service';
 
 @Component({
     selector: 'ng-tr',
@@ -6,12 +8,14 @@ import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 })
 export class NgTrComponent implements OnInit {
 
-  @Input('key') key: String;
+  @Input('key') key: string;
+  @Input('alias') alias: string;
 
-  constructor() { }
+  constructor(private translatePipe: TranslatePipe,
+              private trp: TrpService) { }
 
   ngOnInit() {
-
+      this.trp.setPropertyAlias(this.alias, this.translatePipe.transform(this.key));
   }
 
 }

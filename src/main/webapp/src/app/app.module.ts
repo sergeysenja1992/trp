@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {Injector, NgModule} from '@angular/core';
+import {ChangeDetectorRef, Injector, NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -24,13 +24,16 @@ import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/h
 import {AuthExpiredInterceptor} from './interceptor/auth-expired.interceptor';
 import {AccountService} from './account/account.service';
 import {ContextService} from './context/context.service';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateLoader, TranslateModule, TranslatePipe} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { NgTrComponent } from './ng-tr/ng-tr.component';
 import {AngularDraggableModule} from 'angular2-draggable';
 import { KindergartensComponent } from './kindergartens/kindergartens.component';
 import { KindergartensService } from './kindergartens/kindergartens.service';
 import { KindergartenDialogComponent } from './kindergartens/kindergarten-dialog/kindergarten-dialog.component';
+import { GroupDialogComponent } from './kindergartens/group-dialog/group-dialog.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import {TrpService} from './ng-tr/trp.service';
 
 const appRoutes: Routes = [
     { path: '', component: WelcomePageComponent},
@@ -45,10 +48,13 @@ const appRoutes: Routes = [
         WelcomePageComponent,
         NgTrComponent,
         KindergartensComponent,
-        KindergartenDialogComponent
+        KindergartenDialogComponent,
+        GroupDialogComponent,
+        ConfirmDialogComponent
     ],
     entryComponents: [
-        KindergartenDialogComponent
+        KindergartenDialogComponent,
+        ConfirmDialogComponent
     ],
     imports: [
         BrowserModule,
@@ -83,6 +89,8 @@ const appRoutes: Routes = [
     providers: [
         AccountService,
         ContextService,
+        TranslatePipe,
+        TrpService,
         KindergartensService,
         {
             provide: HTTP_INTERCEPTORS,
