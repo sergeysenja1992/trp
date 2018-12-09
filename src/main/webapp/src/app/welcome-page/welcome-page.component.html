@@ -3,8 +3,8 @@
 <div class="welcome" *ngIf="isAuthenticated === 'UNAUTHORIZED'">
     <mat-card class="login-form">
       <mat-card-title>
-        <p class="h5"><ng-tr [key]="'Welcome in teacher dashboard'"></ng-tr></p>
-        <p class="h5"><ng-tr [key]="'Login to start'"></ng-tr></p>
+        <p class="h5"><ng-tr [key]="'WELCOME_PAGE_COMPONENT_HTML.WELCOME_IN_TEACHER_DASHBOARD'"></ng-tr></p>
+        <p class="h5"><ng-tr [key]="'WELCOME_PAGE_COMPONENT_HTML.LOGIN_TO_START'"></ng-tr></p>
       </mat-card-title>
       <mat-card-content>
         <a mat-flat-button href="#" style="text-transform:none;" (click)="singIn()">
@@ -12,7 +12,7 @@
             <div>
               <img class="google-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"/>
             </div>
-            <span><ng-tr [key]="'Login with google'"></ng-tr></span>
+            <span><ng-tr [key]="'WELCOME_PAGE_COMPONENT_HTML.LOGIN_WITH_GOOGLE'"></ng-tr></span>
           </div>
         </a>
       </mat-card-content>

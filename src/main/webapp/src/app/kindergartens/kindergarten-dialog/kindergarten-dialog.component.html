@@ -1,22 +1,22 @@
 <form #form="ngForm" novalidate class="create-form">
-  <h3 *ngIf="!kindergarten.id" mat-dialog-title><ng-tr [key]="'Add kindergarten'"></ng-tr></h3>
-  <h3 *ngIf="kindergarten.id" mat-dialog-title><ng-tr [key]="'Edit kindergarten'"></ng-tr></h3>
+  <h3 *ngIf="!kindergarten.id" mat-dialog-title><ng-tr [key]="'KINDERGARTEN_DIALOG_COMPONENT_HTML.ADD_KINDERGARTEN'"></ng-tr></h3>
+  <h3 *ngIf="kindergarten.id" mat-dialog-title><ng-tr [key]="'KINDERGARTEN_DIALOG_COMPONENT_HTML.EDIT_KINDERGARTEN'"></ng-tr></h3>
   <div mat-dialog-content>
     <div class="container">
       <div class="row">
         <mat-form-field class="w-100">
-          <mat-label><ng-tr [key]="'Name'"></ng-tr></mat-label>
+          <mat-label><ng-tr [key]="'KINDERGARTEN_DIALOG_COMPONENT_HTML.NAME'"></ng-tr></mat-label>
           <input matInput type="text" maxlength="255" required  name="name" [(ngModel)]="kindergarten.name" #name="ngModel">
           <mat-error *ngIf="name.errors?.required">
-            <ng-tr [key]="'Name is required field'"></ng-tr>
+            <ng-tr [key]="'KINDERGARTEN_DIALOG_COMPONENT_HTML.NAME_IS_REQUIRED_FIELD'"></ng-tr>
           </mat-error>
         </mat-form-field>
       </div>
     </div>
   </div>
   <div mat-dialog-actions class="d-flex flex-row-reverse">
-    <button mat-flat-button color="primary" (click)="save()"><ng-tr [key]="'Save'"></ng-tr></button>
+    <button mat-flat-button color="primary" (click)="save()"><ng-tr [key]="'KINDERGARTEN_DIALOG_COMPONENT_HTML.SAVE'"></ng-tr></button>
     <div class="padding-right">&nbsp;</div>
-    <button mat-button (click)="cancel()"><ng-tr [key]="'Cancel'"></ng-tr></button>
+    <button mat-button (click)="cancel()"><ng-tr [key]="'KINDERGARTEN_DIALOG_COMPONENT_HTML.CANCEL'"></ng-tr></button>
   </div>
 </form>

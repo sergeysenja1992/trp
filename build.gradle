@@ -110,12 +110,13 @@ task translate {
 				def list = []
 
 				html.findAll(regexpWithAlias) { result ->
-					def key = result[1]
-					key = key.trim().replaceAll('\\W', '_').replaceAll('\\s', '_').toUpperCase()
-					if (!result[1].startsWith(fileName)) {
-						list << [result[0], key]
-						json[fileName][key] = result[1]
-					}
+					println result
+					//def key = result[1]
+					//key = key.trim().replaceAll('\\W', '_').replaceAll('\\s', '_').toUpperCase()
+					//if (!result[1].startsWith(fileName)) {
+					//	list << [result[0], key]
+					//	json[fileName][key] = result[1]
+					//}
 				}
 
 				html.findAll(regexp) { result ->

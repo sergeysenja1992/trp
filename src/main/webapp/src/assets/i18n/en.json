@@ -12,9 +12,32 @@
     "WELCOME_PAGE_COMPONENT_HTML": {
         "WELCOME_TO_STORIES_SYSTEM": "Welcome to stories system.",
         "LOGIN_TO_START_USING": "Login to start using.",
-        "LOGIN_WITH_GOOGLE": "Login with Google"
+        "LOGIN_WITH_GOOGLE": "Login with google",
+        "WELCOME_IN_TEACHER_DASHBOARD": "Welcome in teacher dashboard",
+        "LOGIN_TO_START": "Login to start"
     },
     "MY_NAV_COMPONENT_HTML": {
+        "KINDERGARTENS": "Kindergartens",
+        "LESSONS": "Lessons"
+    },
+    "CONFIRM_DIALOG_COMPONENT_HTML": {
+        "YES": "Yes",
+        "CANCEL": "Cancel"
+    },
+    "GROUP_DIALOG_COMPONENT_HTML": {
         
+    },
+    "KINDERGARTEN_DIALOG_COMPONENT_HTML": {
+        "ADD_KINDERGARTEN": "Add kindergarten",
+        "EDIT_KINDERGARTEN": "Edit kindergarten",
+        "NAME": "Name",
+        "NAME_IS_REQUIRED_FIELD": "Name is required field",
+        "SAVE": "Save",
+        "CANCEL": "Cancel"
+    },
+    "KINDERGARTENS_COMPONENT_HTML": {
+        "EDIT_KINDERGARTEN": "Edit kindergarten",
+        "DELETE_KINDERGARTEN": "Delete kindergarten",
+        "ADD_NEW_GROUP": "Add new group"
     }
 }
