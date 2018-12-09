@@ -38,6 +38,7 @@
     "KINDERGARTENS_COMPONENT_HTML": {
         "EDIT_KINDERGARTEN": "Edit kindergarten",
         "DELETE_KINDERGARTEN": "Delete kindergarten",
-        "ADD_NEW_GROUP": "Add new group"
+        "ADD_NEW_GROUP": "Add new group",
+        "ARE_YOU_REALLY_WANT_DELETE": "Are you really want delete"
     }
 }

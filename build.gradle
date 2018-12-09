@@ -94,8 +94,8 @@ task translate {
 		def en = new File(project.projectDir.toString() + '/src/main/webapp/src/assets/i18n/en.json')
 		def json = new groovy.json.JsonSlurper().parseText(en.text)
 
-		def regexp = """<ng-tr\\s* \\[key\\]="'(.*)'">\\s*</ng-tr>"""
-		def regexpWithAlias = """<ng-tr\\s* \\[key\\]="'(.*)'"\\s* \\[alias\\]="'.*'">\\s*</ng-tr>"""
+		def regexp = """(<ng-tr\\s* \\[key\\]="')(.*)('">\\s*</ng-tr>)"""
+		def regexpWithAlias = """(<ng-tr\\s* \\[key\\]="')(.*)('"\\s* \\[alias\\]="'.*'"\\s*>\\s*</ng-tr>)"""
 
 		def dir = new File(project.projectDir.toString() + '/src/main/webapp/src/app')
 		dir.eachFileRecurse (FileType.FILES) { file ->
@@ -110,26 +110,25 @@ task translate {
 				def list = []
 
 				html.findAll(regexpWithAlias) { result ->
-					println result
-					//def key = result[1]
-					//key = key.trim().replaceAll('\\W', '_').replaceAll('\\s', '_').toUpperCase()
-					//if (!result[1].startsWith(fileName)) {
-					//	list << [result[0], key]
-					//	json[fileName][key] = result[1]
-					//}
+					def key = result[2]
+					key = key.trim().replaceAll('\\W', '_').replaceAll('\\s', '_').toUpperCase()
+					if (!result[2].startsWith(fileName)) {
+						list << [result[0], """${result[1]}${fileName}.${key}${result[3]}"""]
+						json[fileName][key] = result[2]
+					}
 				}
 
 				html.findAll(regexp) { result ->
-					def key = result[1]
+					def key = result[2]
 					key = key.trim().replaceAll('\\W', '_').replaceAll('\\s', '_').toUpperCase()
-					if (!result[1].startsWith(fileName)) {
-						list << [result[0], key]
-						json[fileName][key] = result[1]
+					if (!result[2].startsWith(fileName)) {
+						list << [result[0], """${result[1]}${fileName}.${key}${result[3]}"""]
+						json[fileName][key] = result[2]
 					}
 				}
 
 				list.forEach{
-						html = html.replace(it[0], """<ng-tr [key]="'${fileName}.${it[1]}'"></ng-tr>""")
+						html = html.replace(it[0], it[1])
 				}
 				file.write(html)
 			}
