@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {TranslatePipe} from '@ngx-translate/core';
 import {TrpService} from './trp.service';
 
 @Component({
@@ -9,13 +8,14 @@ import {TrpService} from './trp.service';
 export class NgTrComponent implements OnInit {
 
   @Input('key') key: string;
-  @Input('alias') alias: string;
+  @Input('alias') alias?: string;
 
-  constructor(private translatePipe: TranslatePipe,
-              private trp: TrpService) { }
+  constructor(private trp: TrpService) { }
 
   ngOnInit() {
-      this.trp.setPropertyAlias(this.alias, this.translatePipe.transform(this.key));
+      if (this.alias) {
+        this.trp.setPropertyAlias(this.alias, this.key);
+      }
   }
 
 }

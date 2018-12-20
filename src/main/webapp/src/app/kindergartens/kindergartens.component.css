@@ -4,6 +4,10 @@
     right: 25px;
 }
 
+html, body {
+    outline: none;
+}
+
 .menu {
     outline: none;
 }
@@ -35,4 +39,17 @@
 
 .hidden {
     display: none;
+}
+
+.group-name {
+    vertical-align: middle;
+    text-align: left;
+    text-overflow: ellipsis;
+}
+
+td {
+    text-align: right;
+    padding-left: 8px;
+    padding-right: 0;
+    white-space: nowrap;
 }
