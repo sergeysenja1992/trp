@@ -2,7 +2,7 @@ import groovy.io.FileType
 
 buildscript {
 	ext {
-		kotlinVersion = '1.3.0'
+		kotlinVersion = '1.3.20'
 		springBootVersion = '2.0.4.RELEASE'
 	}
 	repositories {

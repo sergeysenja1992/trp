@@ -96,7 +96,7 @@ class LessonService (
                             ||
                             it.periodType == PeriodType.DATE
                 }.map {
-                    val lesson = it.copy()
+                    val lesson = it
                     lesson.startDate = date
                     lesson.endDate = date
                     lesson

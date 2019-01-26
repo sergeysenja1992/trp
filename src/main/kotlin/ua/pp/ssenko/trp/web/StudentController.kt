@@ -48,7 +48,7 @@ data class StudentDto (
         var name: String,
         var startDate: LocalDate,
         var endDate: LocalDate?,
-        var groupId: Long,
+        var groupId: Long?,
         var removed: Boolean = false
 )
 

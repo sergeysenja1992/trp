@@ -5,7 +5,8 @@ const PROXY_CONFIG = [
             "/google/login",
             "/api"
         ],
-        target: "http://ssenko.pp.ua:8080",
+        //target: "http://ssenko.pp.ua:8080",
+        target: "http://localhost:8080",
         secure: false,
         changeOrigin: false,
         logLevel: "debug"

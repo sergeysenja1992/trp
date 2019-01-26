@@ -7,25 +7,15 @@ import java.time.LocalDate
 import java.time.LocalTime
 import javax.persistence.*
 import javax.persistence.GenerationType.IDENTITY
+import javax.persistence.InheritanceType.SINGLE_TABLE
 
-@Entity
-data class Account (
-        @Id
-        @GeneratedValue(strategy = IDENTITY)
-        val id: Long = 0,
-        @Column(unique = true)
-        var email: String
-)
-
-@Entity
-data class Kindergarten (
-        @Id
-        @GeneratedValue(strategy = IDENTITY)
-        val id: Long = 0,
-        var name: String,
-        @ManyToOne
-        var owner: Account,
-        var removed: Boolean = false
+@MappedSuperclass
+open class ObjectWithOwner (
+    @ManyToOne
+    var owner: Account,
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    val id: Long = 0
 ) {
     fun assertOwner(email: String) {
         if (!owner.email.equals(email)) {
@@ -35,54 +25,54 @@ data class Kindergarten (
 }
 
 @Entity
+@Inheritance
+class Account (
+        @Column(unique = true)
+        var email: String,
+        owner: Account
+) : ObjectWithOwner(owner)
+
+@Entity
+@Inheritance
+class Kindergarten (
+        var name: String,
+        var removed: Boolean = false,
+        owner: Account
+) : ObjectWithOwner(owner)
+
+@Entity
+@Inheritance
 @Table(name = "lesson_group")
-data class Group (
-        @Id
-        @GeneratedValue(strategy = IDENTITY)
-        val id: Long = 0,
+class Group (
         var name: String,
         @ManyToOne
         val kindergarten: Kindergarten,
-        @ManyToOne
-        var owner: Account,
         var endDate: LocalDate? = null,
-        var removed: Boolean = false
-) {
-    fun assertOwner(email: String) {
-        if (!owner.email.equals(email)) {
-            throw ForbiddenException("user.not.owner")
-        }
-    }
-}
+        var removed: Boolean = false,
+        owner: Account
+) : ObjectWithOwner(owner)
 
 @Entity
-data class Student (
-        @Id
-        @GeneratedValue(strategy = IDENTITY)
-        val id: Long = 0,
+@Inheritance
+class Student (
         var name: String,
-        @ManyToOne
-        var group: Group,
         var startDate: LocalDate = LocalDate.now(),
         var endDate: LocalDate? = null,
-        var removed: Boolean = false
-
-)
+        var removed: Boolean = false,
+        @ManyToOne
+        var group: Group?,
+        owner: Account
+) : ObjectWithOwner(owner)
 
 
 @Entity
-data class Lesson (
-        @Id
-        @GeneratedValue(strategy = IDENTITY)
-        val id: Long = 0,
+@Inheritance
+class Lesson (
         var name: String?,
-        @ManyToOne
-        val owner: Account,
         @OneToMany
         val groups: MutableSet<Group> = HashSet(),
         @OneToMany
         val students: MutableSet<Student> = HashSet(),
-
         var startDate: LocalDate,
         var endDate: LocalDate,
         @Enumerated(EnumType.STRING)
@@ -92,15 +82,9 @@ data class Lesson (
         @ElementCollection
         var excludeDays: MutableSet<LocalDate> = HashSet(),
         var time: LocalTime?,
-
-        var removed: Boolean = false
-) {
-
-    fun assertOwner(email: String) {
-        if (!owner.email.equals(email)) {
-            throw ForbiddenException("user.not.owner")
-        }
-    }
+        var removed: Boolean = false,
+        owner: Account
+) : ObjectWithOwner(owner) {
 
     val color
         get() = String.format("#%06x", id.hashCode() % 0xffffff)
@@ -111,14 +95,13 @@ enum class PeriodType {
 }
 
 @Entity
-data class StudentCheck (
-        @Id
-        @GeneratedValue(strategy = IDENTITY)
-        val id: Long = 0,
+@Inheritance
+class StudentCheck (
         @ManyToOne
         val student: Student,
         @ManyToOne
         val lesson: Lesson,
         val date: Instant,
-        val visited: Boolean
-)
+        val visited: Boolean,
+        owner: Account
+) : ObjectWithOwner(owner)
